@@ -16,5 +16,5 @@ before_install:
   - chmod +x ./build-wallet.sh
   - echo "$COIN_NAME"
 
-install: ./build-wallet.sh
+install: travis_wait 60 ./build-wallet.sh
 
