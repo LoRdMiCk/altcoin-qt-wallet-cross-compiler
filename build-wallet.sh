@@ -2,9 +2,16 @@
 
 cd "$WORKDIR"
 
-# sudo apt-get update -qq -y
-sudo apt install p7zip-full autoconf automake autopoint bash bison bzip2 cmake flex gettext git g++ gperf intltool libffi-dev libtool libltdl-dev libssl-dev libxml-parser-perl make openssl patch perl pkg-config python ruby scons sed unzip wget xz-utils g++-multilib libc6-dev-i386
-sudo apt-get install g++-multilib libc6-dev-i386 -y
+#dependencies
+sudo apt-get install -yqq  p7zip-full autoconf automake autopoint bash bison bzip2 cmake flex gettext git g++ gperf intltool libffi-dev libtool libltdl-dev libssl-dev libxml-parser-perl make openssl patch perl pkg-config python ruby scons sed unzip wget xz-utils g++-multilib libc6-dev-i386
+
+#mxe
+sudo apt-get -qq update && sudo apt-get -yqq install python-software-properties software-properties-common
+#sudo add-apt-repository -y "deb http://pkg.mxe.cc/repos/apt/debian wheezy main"
+echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mxeapt.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB && sudo apt-get -qq update
+sudo apt-get install -yqq mxe-i686-w64-mingw32.static-boost mxe-i686-w64-mingw32.static-qttools
+
   
 echo "############ Compiling MXE ############"
 git clone https://github.com/mxe/mxe.git
